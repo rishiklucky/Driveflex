@@ -27,7 +27,7 @@ app.use(
 const db = mysql.createConnection({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "mysql@123",
+  password: process.env.DB_PASSWORD || "<your_mysql_password>",
   database: process.env.DB_NAME || "car_rental1",
 });
 
