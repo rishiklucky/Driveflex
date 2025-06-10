@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - View Cars</title>
+</head>
+<body>
+    <h2>Admin - View Cars</h2>
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Car ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cars.forEach((car) => { %>
+                <tr>
+                    <td><%= car.id %></td>
+                    <td><%= car.brand %></td>
+                    <td><%= car.model %></td>
+                    <td><%= car.price %></td>
+                    <td><%= car.description %></td>
+                    <td>
+                        <a href="/admin/edit-car/<%= car.id %>">Edit</a> | 
+                        <a href="/admin/delete-car/<%= car.id %>" onclick="return confirm('Are you sure you want to delete this car?')">Delete</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <br>
+    <a href="/admin/dashboard">Back to Dashboard</a>
+</body>
+</html>

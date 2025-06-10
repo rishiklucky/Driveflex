@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D3D3D3; /* Light Grey */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2, h3 {
+            color: #343a40;
+        }
+
+        .nav-links {
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            background-color: #333333; /* Dark Grey */
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 10px 15px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #555555; /* Slightly lighter grey on Hover */
+        }
+
+        table {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: #D3D3D3; /* Light Grey */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333333; /* Dark Grey */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #D3D3D3; /* Light Grey */
+        }
+
+        img {
+            width: 100px;
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        .book-btn {
+            text-decoration: none;
+            background: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .book-btn:hover {
+            background: #007baa;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                width: 95%;
+            }
+
+            .navbar {
+                display: flex;
+                flex-direction: column;
+                padding: 5px;
+            }
+
+            .navbar a {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>User Dashboard</h2>
+
+    <div class="navbar">
+        <a href="/my-bookings">View My Bookings</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <h3>Available Cars</h3>
+
+    <table>
+        <tr>
+            <th>Car Image</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Kilometers Driven</th>
+            <th>Price per Day</th>
+            <th>Action</th>
+        </tr>
+        <% cars.forEach(car => { %>
+            <tr>
+                <td><img src="/uploads/<%= car.image %>" alt="Car Image"></td>
+                <td><%= car.brand %></td>
+                <td><%= car.model %></td>
+                <td><%= car.kilometers %></td>
+                <td>₹<%= car.price %></td>
+                <td><a href="/book-car/<%= car.id %>" class="book-btn">Book Now</a></td>
+            </tr>
+        <% }); %>
+    </table>
+
+</body>
+</html>

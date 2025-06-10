@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D3D3D3; /* Light Grey */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #343a40;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 90%;
+            margin: auto;
+            background-color: #D3D3D3; /* Light Grey */
+
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        table {
+            background-color: #D3D3D3; /* Light Grey */
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333333; /* Dark Grey */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #D3D3D3; /* Light Grey */
+        }
+
+        .pay-btn {
+            background: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .pay-btn:hover {
+            background: #007baa;
+        }
+
+        .disabled {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>My Bookings</h2>
+    <a href="/user-dashboard">Back to Dashboard</a>
+
+    <div class="container">
+        <table>
+            <tr>
+                <th>Car</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Payment Status</th>
+                <th>Action</th>
+            </tr>
+            <% bookings.forEach(booking => { %>
+                <tr>
+                    <td><%= booking.brand %> - <%= booking.model %></td>
+                    <td><%= new Date(booking.start_date).toLocaleDateString() %></td>
+                    <td><%= new Date(booking.end_date).toLocaleDateString() %></td>
+                    <td>₹<%= booking.total_price %></td>
+                    <td><%= booking.status %></td>
+                    <td><%= booking.payment_status %></td>
+                    <td>
+                        <% if (booking.payment_status === "Pending") { %>
+                            <a href="/payment/<%= booking.id %>" class="pay-btn">Pay Now</a>
+                        <% } else { %>
+                            <span class="disabled">Payment Completed</span>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+
+</body>
+</html>

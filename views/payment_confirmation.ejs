@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D3D3D3; /* Light Grey */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 50px;
+            color: #28a745;
+        }
+
+        h2 {
+            color: #343a40;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background:  #007baa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="success-icon">✅</div>
+        <h2>Payment Successful!</h2>
+        <p>Your booking has been confirmed. The payment status is now <strong>Paid</strong>.</p>
+        <a href="/my-bookings" class="btn">Go to My Bookings</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Car</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+           
+ background-color: #D3D3D3; /* Light Grey */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 40%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        input[type="date"], button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="date"] {
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #007baa;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            let today = new Date();
+            let todayStr = today.toISOString().split('T')[0];
+            
+            // Set the Start Date min to today
+            document.getElementById("start_date").setAttribute("min", todayStr);
+            document.getElementById("end_date").setAttribute("min", todayStr);
+        };
+
+        function setEndDateMin() {
+            let startDate = document.getElementById("start_date").value;
+            if (startDate) {
+                let start = new Date(startDate);
+                start.setDate(start.getDate() + 1); // Ensure at least one day gap
+                let minEndDate = start.toISOString().split('T')[0];
+
+                document.getElementById("end_date").setAttribute("min", minEndDate);
+                document.getElementById("end_date").value = ""; // Reset end date when start date changes
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Book Car</h2>
+        <form action="/book-car/<%= car.id %>" method="POST">
+            <table>
+                <tr>
+                    <td><strong>Car:</strong></td>
+                    <td><%= car.brand %> - <%= car.model %></td>
+                </tr>
+                <tr>
+                    <td><strong>Price per Day:</strong></td>
+                    <td>₹<%= car.price %></td>
+                </tr>
+                <tr>
+                    <td><strong>Start Date:</strong></td>
+                    <td><input type="date" id="start_date" name="start_date" required onchange="setEndDateMin()"></td>
+                </tr>
+                <tr>
+                    <td><strong>End Date:</strong></td>
+                    <td><input type="date" id="end_date" name="end_date" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Confirm Booking</button></td>
+                </tr>
+            </table>
+        </form>
+
+        <a href="/user-dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+
+</body>
+</html>

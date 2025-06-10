@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D3D3D3; /* Light Grey */
+            /*background-image: url('https://static.vecteezy.com/system/resources/thumbnails/030/583/407/small/classic-american-car-with-reflection-on-the-water-ai-generated-photo.jpg');*/
+            /*background-size: cover;   */     /* Makes sure the image covers the entire screen */
+            /*background-position: center;*/   /* Centers the image */
+            /* background-repeat: no-repeat; */ /* Ensures the image does not repeat */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #333333; /* Dark Grey */
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 10px 15px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #555555; /* Slightly lighter grey on Hover */
+        }
+
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #D3D3D3; /* Light Grey */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333333; /* Dark Grey */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #D3D3D3; /* Light Grey */
+        }
+
+        img {
+            width: 100px;
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        .action-links a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .action-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                width: 95%;
+            }
+
+            .navbar {
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .navbar a {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Admin Dashboard</h2>
+    
+    <div class="navbar">
+        <a href="/logout">Logout</a>
+        <a href="/add-car">Add Car</a>
+        <a href="/admin/view-bookings">View Bookings</a>
+    </div>
+
+    <h3>Car List</h3>
+    <table>
+        <tr>
+            <th>Car Image</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Price per Day</th>
+            <th>Actions</th>
+            <th>Kilometers Driven</th>
+        </tr>
+        <% cars.forEach(car => { %>
+            <tr>
+                <td><img src="/uploads/<%= car.image %>" alt="Car Image"></td>
+                <td><%= car.brand %></td>
+                <td><%= car.model %></td>
+                <td>₹<%= car.price %></td>
+                <td class="action-links">
+                    <a href="/admin/edit-car/<%= car.id %>">Edit</a> | 
+                    <a href="/admin/delete-car/<%= car.id %>" onclick="return confirm('Are you sure you want to delete this car?')">Delete</a>
+                </td>
+                <td><%= car.kilometers %></td>
+            </tr>
+        <% }); %>
+    </table>
+
+</body>
+</html>
